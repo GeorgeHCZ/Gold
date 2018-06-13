@@ -16,7 +16,10 @@ export class NewClass extends cc.Component {
     }
 
     onCollisionEnter(other,self){
-        
+
+        self.node.addChild();
+
+
         if(other.tag == 1){
             this.score += 2;
             this.rScore.string = this.score.toString();
@@ -38,6 +41,6 @@ export class NewClass extends cc.Component {
             this.rScore.string = this.score.toString();
         }
         other.node.destroy();
+        
     }
-
 }

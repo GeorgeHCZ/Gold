@@ -30,6 +30,7 @@ export class NewClass extends cc.Component {
 
             self.rope.runAction(cc.moveBy(3,-470*Math.tan(Math.PI/180*this.rope.rotation),-470));
         },this);
+        
         this.node.on('mouseup',function(){
             self.rope.runAction(cc.sequence(cc.moveTo(this.speed,this.startPos),cc.callFunc(function(){
                 if(this.rope.position.y == this.startPos.y){
