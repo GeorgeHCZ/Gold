@@ -13,12 +13,13 @@ export class NewClass extends cc.Component {
     private shackeAction;
 
     private speed = 3;
-    
 
+    onLoad(){
+        this.startPos = this.rope.position;
+    }
+    
     start(){
 
-        this.startPos = this.rope.position;
-        
         this.shackeAction = cc.repeatForever(cc.sequence(cc.rotateTo(3,60),cc.rotateTo(3,-60)));
 
         this.rope.runAction(this.shackeAction);
@@ -34,6 +35,7 @@ export class NewClass extends cc.Component {
         this.node.on('mouseup',function(){
             self.rope.runAction(cc.sequence(cc.moveTo(this.speed,this.startPos),cc.callFunc(function(){
                 if(this.rope.position.y == this.startPos.y){
+                    this.des();
                     this.rope.runAction(this.shackeAction);
                 }
                 
@@ -55,5 +57,11 @@ export class NewClass extends cc.Component {
 
     update(dt){
         
+    }
+    
+    des(){
+        var obj = this.claw.getChildByName("obj");
+        obj.getComponent(cc.Sprite).spriteFrame = null;
+
     }
 }

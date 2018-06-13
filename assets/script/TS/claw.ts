@@ -6,6 +6,9 @@ export class NewClass extends cc.Component {
     @property(cc.Label)
     rScore:cc.Label = null;
 
+    @property(cc.Node)
+    objNode:cc.Node = null;
+
     private score = 0;
 
     start(){
@@ -17,8 +20,12 @@ export class NewClass extends cc.Component {
 
     onCollisionEnter(other,self){
 
-        self.node.addChild();
-
+        var objNode = this.objNode;
+        var objsprite = other.node.getComponent(cc.Sprite);
+        objNode.getComponent(cc.Sprite).spriteFrame = objsprite.spriteFrame;
+        objNode.width = other.node.width;
+        objNode.height = other.node.height; 
+        this.objNode.opacity=255;
 
         if(other.tag == 1){
             this.score += 2;
