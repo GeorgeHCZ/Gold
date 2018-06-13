@@ -12,7 +12,7 @@ export class NewClass extends cc.Component {
 
         var manager = cc.director.getCollisionManager();
         manager.enabled = true;
-        manager.enabledDebugDraw = true;
+        //manager.enabledDebugDraw = true;
     }
 
     onCollisionEnter(other,self){
