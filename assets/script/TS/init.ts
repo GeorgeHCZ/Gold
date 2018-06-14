@@ -3,6 +3,7 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export class NewClass extends cc.Component {
 
+    //石头和金块的预制体
     @property(cc.Prefab)
     target1: cc.Prefab = null;
 
@@ -30,6 +31,7 @@ export class NewClass extends cc.Component {
         this.newInit();
     }
 
+    //随机生成金块产生的位置
     getNewGoldPosition(){
 
         var maxX,maxY;
@@ -42,6 +44,7 @@ export class NewClass extends cc.Component {
 
     }
 
+    //实例化
     newInit(){
 
         var gold1 = cc.instantiate(this.target1);
@@ -69,8 +72,11 @@ export class NewClass extends cc.Component {
         gold6.setPosition(this.getNewGoldPosition());
     }
 
+    //当场景中的金块和石头为0时，关闭碰撞管理，重新实例化
     update(){
         if(this.node.childrenCount == 0){
+            var manager = cc.director.getCollisionManager();
+            manager.enabled = false;
             this.newInit();
         }
         
