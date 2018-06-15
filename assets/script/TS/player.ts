@@ -12,7 +12,7 @@ export class NewClass extends cc.Component {
     //显示炸药数目的Label
     @property(cc.Label)
     bNum:cc.Label = null;
-    //显示当前得分的Labe
+    //显示当前得分的Label
     @property(cc.Label)
     rScore:cc.Label = null;
 
@@ -35,7 +35,7 @@ export class NewClass extends cc.Component {
     
     start(){
 
-        //获取claw节点的下的claw组件
+        //获取claw节点的下的claw组件(claw.ts脚本文件)
         this.cs = this.claw.getComponent('claw');
         
         this.num = Number(this.bNum.string);
@@ -68,6 +68,22 @@ export class NewClass extends cc.Component {
             }
         },this);
 
+    }
+
+    update(dt){
+
+        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN,function(event){
+            if(event.keyCode == cc.KEY.space){
+                this.speed = 0.5;
+            }
+        },this);
+        
+        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP,function(event){
+            if(event.keyCode == cc.KEY.space){
+                this.speed = 3;
+            }
+        },this);
+
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN,function(event){
             if(event.keyCode == cc.KEY.up){
                 if(this.num > 0){
@@ -75,16 +91,6 @@ export class NewClass extends cc.Component {
                 }
             }
         },this);
-
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP,function(event){
-            if(event.keyCode == cc.KEY.space){
-                this.speed = 3;
-            }
-        },this);
-    }
-
-    update(dt){
-        
     }
     
     //销毁，计分

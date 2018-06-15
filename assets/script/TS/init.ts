@@ -47,6 +47,8 @@ export class NewClass extends cc.Component {
     //实例化
     newInit(){
 
+        
+
         var gold1 = cc.instantiate(this.target1);
         this.node.addChild(gold1);
         gold1.setPosition(this.getNewGoldPosition());

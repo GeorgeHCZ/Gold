@@ -41,4 +41,11 @@ export class NewClass extends cc.Component {
         }
         other.node.destroy();   
     }
+
+    update(){
+        if(this.objNode.getComponent(cc.Sprite).spriteFrame != null){
+            var manager = cc.director.getCollisionManager();
+            manager.enabled = false;
+        }
+    }
 }
