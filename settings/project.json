@@ -9,11 +9,11 @@
   "collision-matrix": [
     [
       false,
-      false,
+      true,
       true
     ],
     [
-      false,
+      true,
       false
     ],
     [
@@ -26,7 +26,7 @@
   "design-resolution-width": 960,
   "excluded-modules": [],
   "fit-height": true,
-  "fit-width": false,
+  "fit-width": true,
   "group-list": [
     "claw",
     "wall",

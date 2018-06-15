@@ -10,13 +10,18 @@ export class NewClass extends cc.Component {
     //保存得分信息
     public score;
 
+    public time;
+
     start(){
         this.score = 0;
+        this.time = 0;
     }
 
     onCollisionEnter(other,self){
 
         //将发生碰撞的金块的spriteFrame渲染到钩子上的节点上
+        if(other.tag != 0){
+
         var objNode = this.objNode;
         var objsprite = other.node.getComponent(cc.Sprite);
         objNode.getComponent(cc.Sprite).spriteFrame = objsprite.spriteFrame;
@@ -36,10 +41,17 @@ export class NewClass extends cc.Component {
         else if(other.tag == 4){
             this.score = 10;
         }
-        else{
+        else if(other.tag == 5||other.tag == 6){
             this.score = 1;
         }
-        other.node.destroy();   
+        else if(other.tag == 9){
+            this.score = -5;
+        }else{
+            this.time = 10;
+        }
+        other.node.destroy(); 
+
+        }  
     }
 
     update(){

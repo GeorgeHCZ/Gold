@@ -3,6 +3,9 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export class NewClass extends cc.Component {
 
+    @property(cc.Label)
+    lLabel:cc.Label = null;
+
     //石头和金块的预制体
     @property(cc.Prefab)
     target1: cc.Prefab = null;
@@ -22,6 +25,15 @@ export class NewClass extends cc.Component {
     @property(cc.Prefab)
     target6: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    clock:cc.Prefab = null;
+
+    @property(cc.Prefab)
+    bomm:cc.Prefab = null;
+
+    private ll;
+    public next = false;
+
     onLoad(){
         
     }
@@ -29,6 +41,7 @@ export class NewClass extends cc.Component {
 
     start(){
         this.newInit();
+        this.ll = this.lLabel.string;
     }
 
     //随机生成金块产生的位置
@@ -72,6 +85,14 @@ export class NewClass extends cc.Component {
         var gold6 = cc.instantiate(this.target6);
         this.node.addChild(gold6);
         gold6.setPosition(this.getNewGoldPosition());
+
+        var clo = cc.instantiate(this.clock);
+        this.node.addChild(clo);
+        clo.setPosition(this.getNewGoldPosition());
+
+        var bo = cc.instantiate(this.bomm);
+        this.node.addChild(bo);
+        bo.setPosition(this.getNewGoldPosition());
     }
 
     //当场景中的金块和石头为0时，关闭碰撞管理，重新实例化
@@ -79,6 +100,9 @@ export class NewClass extends cc.Component {
         if(this.node.childrenCount == 0){
             var manager = cc.director.getCollisionManager();
             manager.enabled = false;
+            this.ll++;
+            this.next = true;
+            this.lLabel.string = this.ll;
             this.newInit();
         }
         
